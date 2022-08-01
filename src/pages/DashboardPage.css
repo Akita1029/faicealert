@@ -1,0 +1,19 @@
+thead, tbody{
+    background-color: white;
+    border-radius: 2rem;
+    color:#666;
+    margin-top: 2rem;
+    align-items: center;
+}
+
+tr{
+    margin-top: 5px;;
+}
+
+.custom-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #4E73F8;
+    margin-right: 10px;
+}
