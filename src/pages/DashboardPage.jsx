@@ -1,10 +1,12 @@
 import React from "react";
 
-import RatingPage from "../components/RatingPage";
+// import RatingPage from "../components/RatingPage";
+
+import { useNavigate } from "react-router-dom";
 
 import theme from "../lib/theme";
 
-import './DashboardPage.css';
+import './Pages.css';
 
 const NavItem = (props) => {
     return (
@@ -28,10 +30,20 @@ const NavItem = (props) => {
     );
 };
 
+
 export default function DashboardPage(props) {
+    
+    const navigate = useNavigate();
+    
+    const handleRoute = (data) => {
+        navigate('/'+data, {
+            replace: true
+        });
+    };
 
     const [tabIndex, setTabIndex] = React.useState(1);
 
+   
     return (
         <div style={{
             color:"#666"
@@ -49,8 +61,7 @@ export default function DashboardPage(props) {
             >
                 <div
                     style={{
-                        backgroundImage: "url('/logo-text-1.png')",
-                        backgroundPosition: '0 -24px',
+                        backgroundImage: "url('/logo-text.png')",
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover',
                         width: 240,
@@ -58,7 +69,7 @@ export default function DashboardPage(props) {
                         cursor: 'pointer',
                     }}
                 />
-                <div className="input-group flex-nowrap" style={{flex: 1}}>
+                <div className="input-group flex-nowrap ms-5" style={{flex: 1}}>
                     <span className="input-group-text"  style={{backgroundColor:"#fff"}}><i className="bi bi-search"/></span>
                     <input className="form-control" style={{borderLeft: 'none'}} placeholder="Search for stores and people..."/>
                 </div>
@@ -114,7 +125,7 @@ export default function DashboardPage(props) {
                                 <ul className="nav flex-column">
                                     <NavItem label="Dashboard" iconName="bi bi-house" />
                                     <NavItem label="Stores" iconName="bi bi-cart" badge={5} />
-                                    <NavItem label="Person of Interest" iconName="bi bi-person" badge={10} />
+                                    <NavItem label="Person of Interest" iconName="bi bi-person" badge={10} onClick={()=>handleRoute('poi')}/>
                                     <NavItem label="My Reports" iconName="bi bi-file-text" />
                                     <NavItem label="Manage Users" iconName="bi bi-exclamation-triangle" />
                                     <NavItem label="Configuration" iconName="bi bi-gear" />
@@ -136,7 +147,6 @@ export default function DashboardPage(props) {
                                     <NavItem label="Edit Profile" iconName="bi bi-house" />
                                     <NavItem label="Sign Out" iconName="bi bi-cart" />
                                 </ul>
-
                             </div>
                         </div>
                         <div className="col-md-9 col-sm-12- ps-4">
@@ -180,9 +190,7 @@ export default function DashboardPage(props) {
                                                 alignItems: 'center',
                                                 cursor: 'pointer'
                                             }}>
-                                                <i className="bi bi-dot" style={{
-                                                    color:"blue",
-                                                }}></i>
+                                                <span className="custom-dot"></span>
                                                 <span className="flex-grow-1">Lancaster</span>
                                                 <span>34</span>
                                             </li>
@@ -193,9 +201,7 @@ export default function DashboardPage(props) {
                                                 alignItems: 'center',
                                                 cursor: 'pointer'
                                             }}>
-                                                <i className="bi bi-dot" style={{
-                                                    color:"blue",
-                                                }}></i>
+                                                <span className="custom-dot"></span>
                                                 <span className="flex-grow-1">knutsford</span>
                                                 <span>27</span>
                                             </li>
@@ -206,9 +212,7 @@ export default function DashboardPage(props) {
                                                 alignItems: 'center',
                                                 cursor: 'pointer'
                                             }}>
-                                                <i className="bi bi-dot" style={{
-                                                    color:"blue",
-                                                }}></i>
+                                                <span className="custom-dot"></span>
                                                 <span className="flex-grow-1">Hale</span>
                                                 <span>12</span>
                                             </li>
@@ -219,9 +223,7 @@ export default function DashboardPage(props) {
                                                 alignItems: 'center',
                                                 cursor: 'pointer'
                                             }}>
-                                                <i className="bi bi-dot" style={{
-                                                    color:"blue",
-                                                }}></i>
+                                                <span className="custom-dot"></span>
                                                 <span className="flex-grow-1">Other stores</span>
                                                 <span>221</span>
                                             </li>
@@ -352,17 +354,17 @@ export default function DashboardPage(props) {
                         <div className="mx-4 d-flex flex-row" style={{
                             background: '#eee',
                         }}>
-                            <div class="input-group">
-                                <span class="input-group-text"><i className="bi bi-search" /></span>
-                                <input type="text" class="form-control" placeholder="Search name here" style={{
+                            <div className="input-group">
+                                <span className="input-group-text"><i className="bi bi-search" /></span>
+                                <input type="text" className="form-control" placeholder="Search name here" style={{
                                     borderLeft: 'none',
                                     backgroundColor: '#e9ecef',
                                     borderTopRightRadius: 0,
                                     borderBottomRightRadius: 0
                                 }} />
                             </div>
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" style={{
+                            <div className="dropdown">
+                                <button className="btn btn-primary dropdown-toggle" type="button" style={{
                                     background: '#e9ecef',
                                     borderRadius: 0,
                                     borderLeftWidth: 0,
@@ -373,14 +375,14 @@ export default function DashboardPage(props) {
                                     <i className="bi bi-search me-2"></i>
                                     <span className="me-2">All Stores</span>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </div>
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" style={{
+                            <div className="dropdown">
+                                <button className="btn btn-primary dropdown-toggle" type="button" style={{
                                     background: '#e9ecef',
                                     borderRadius: 0,
                                     color: '#666',
@@ -391,14 +393,14 @@ export default function DashboardPage(props) {
                                     <i className="bi bi-search me-2"></i>
                                     <span className="me-2">All Stores</span>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </div>
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" style={{
+                            <div className="dropdown">
+                                <button className="btn btn-primary dropdown-toggle" type="button" style={{
                                     background: '#e9ecef',
                                     borderRadius: 0,
                                     borderLeftWidth: 0,
@@ -408,10 +410,10 @@ export default function DashboardPage(props) {
                                     <i className="bi bi-search me-2"></i>
                                     <span className="me-2">All Stores</span>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="#">Action</a></li>
+                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </div>
                             <button className="btn btn-primary px-4" style={{
@@ -453,7 +455,7 @@ export default function DashboardPage(props) {
                                         </tr>
                                     </thead>
                                     <tbody  className="mt-5">
-                                        <tr>
+                                        <tr onClick={()=>handleRoute('match/analysis')}>
                                             <td><i className="bi bi-file-person"></i></td>
                                             <td scope="col">
                                                 <img src="/avatar.png" style={{
