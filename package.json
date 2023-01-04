@@ -8,11 +8,18 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.0",
     "bootstrap-icons": "^1.9.1",
+    "google-map-react": "^2.2.0",
+    "mdb-react-ui-kit": "^4.1.0",
     "mdbreact": "^5.2.0",
+    "multiselect-react-dropdown": "^2.0.25",
     "react": "^18.2.0",
+    "react-bootstrap-table-next": "^4.0.3",
+    "react-calendar": "^3.7.0",
     "react-dom": "^18.2.0",
+    "react-rating": "^2.0.5",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-simple-star-rating": "^4.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

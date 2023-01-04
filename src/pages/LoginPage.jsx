@@ -32,8 +32,8 @@ export default function LoginPage(props) {
                 justifyContent: 'flex-start',
                 alignItems: 'center'
             }}>
-                <img src={logo} style={{width: '100%', marginTop: -50}} />
-                <div className="form w-100">
+                <img src={logo} style={{width: '90%'}} />
+                <div className="form w-100 mt-3">
                     <div className="form-group w-100 position-relative">
                         <label style={{
                             position: 'absolute',

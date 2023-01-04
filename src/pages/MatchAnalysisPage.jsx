@@ -1,11 +1,12 @@
 import React from "react";
 
 import MenuPop from "../components/MenuPop";
-import StoreContact from "../components/StoreContact";
+import KeyStoreContacts from "../components/KeyStoreContacts";
 
 import theme from "../lib/theme";
 
 import './Pages.css';
+import NavigationFooter from "../components/NavigationFooter";
 
 
 
@@ -56,27 +57,16 @@ export default function MatchAnalysisPage(props){
                             <span>sit amet veneatis sapien.</span>
                         </div>
                     </div>
-                    <div className="mt-4">
-                        <div className="d-flex flex-row justify-content-start align-itmes-center">
-                            <p className="flex-grow-1 ms-3">KEY STORE CONTACTS</p>
-                            <div className="d-flex flex-row justify-center-start align-itmes-center mt-2 me-2">
-                                <span className="array-dot"></span>
-                                <span className="array-dot"></span>
-                                <span className="array-dot"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <StoreContact />
-                    <StoreContact />
-                    <StoreContact />
+                    <KeyStoreContacts />
+                    <NavigationFooter />
                 </div>
                 {/* Navigation Bar End */}
                 <div className="col-9 ps-0">
                     {/* Header Bar Start */}
                     <div className="p-4">
                         <div className="d-flex flex-row justify-content-between mt-3">
-                            <h3>Match</h3>
-                            <div className="input-group flex-nowrap ms-5" style={{flex: 1}}>
+                            <h3 className="fw-bold">Match</h3>
+                            <div className="input-group flex-nowrap ms-5 w-25">
                                 <span className="input-group-text"  style={{backgroundColor:"#fff"}}><i className="bi bi-search"/></span>
                                 <input className="form-control" style={{borderLeft: 'none'}} placeholder="Search for stores and people..."/>
                             </div>

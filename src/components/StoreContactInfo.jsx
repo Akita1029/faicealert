@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function StoreContact(props){
+export default function StoreContactInfo(props){
     return(
         <div  className="ms-3 mt-3">
             <div style={{

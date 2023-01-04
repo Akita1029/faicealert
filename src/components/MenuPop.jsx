@@ -10,7 +10,7 @@ const NavItem = (props) => {
             justifyContent: 'flex-start',
             alignItems: 'center',
             cursor: 'pointer',
-        }}>
+        }} onClick={props.onClick}>
             <i className={props.iconName} style={{fontSize: '1.2rem'}}/>
             <span className="ms-3 flex-grow-1" style={{fontSize: '1.2rem'}}>{props.label}</span>
             {props.badge ? (
@@ -26,12 +26,10 @@ const NavItem = (props) => {
 
 export default function MenuPop(props){
     
-    // const navigate = new useNavigate();
-    // const handleMenu = (data) => {
-    //     navigate('/'+data, {
-    //         replace: true
-    //     });
-    // };
+    const navigate = new useNavigate();
+    const handleMenu = (data) => {
+        navigate(`/${data}`);
+    };
 
 
     const [MenuStatus, setMenuStatus] = React.useState(Boolean, false);
@@ -57,12 +55,12 @@ export default function MenuPop(props){
                         }}>
                             <div className="mt-4 mb-2 ms-2 me-2">
                                 <ul className="nav flex-column">
-                                    <NavItem label="Dashboard" iconName="bi bi-house" />
-                                    <NavItem label="Stores" iconName="bi bi-cart" badge={5} />
-                                    <NavItem label="Person of Interest" iconName="bi bi-person" badge={10} />
-                                    <NavItem label="My Reports" iconName="bi bi-file-text" />
-                                    <NavItem label="Manage Users" iconName="bi bi-exclamation-triangle" />
-                                    <NavItem label="Configuration" iconName="bi bi-gear" />
+                                    <NavItem label="Dashboard" iconName="bi bi-house" onClick={() => handleMenu('dashboard')}/>
+                                    <NavItem label="Stores" iconName="bi bi-cart" badge={5} onClick={() => handleMenu('stores')}/>
+                                    <NavItem label="Person of Interest" iconName="bi bi-person" badge={10} onClick={() => handleMenu('poi')}/>
+                                    <NavItem label="My Reports" iconName="bi bi-file-text" onClick={() => handleMenu('reports')}/>
+                                    <NavItem label="Manage Users" iconName="bi bi-exclamation-triangle" onClick={() => handleMenu('users')}/>
+                                    <NavItem label="Configuration" iconName="bi bi-gear" onClick={() => handleMenu('settings')}/>
                                 </ul>
                             </div>
                         </div>

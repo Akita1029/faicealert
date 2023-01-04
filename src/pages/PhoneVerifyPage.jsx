@@ -32,8 +32,8 @@ export default function PhoneVerifyPage(props) {
                 justifyContent: 'flex-start',
                 alignItems: 'center'
             }}>
-                <img src={logo} style={{width: '120%', marginTop: -50}} />
-                <span style={{margiTop:-100}}>A One Time Passcode has been sent to the mobile</span>
+                <img src={logo} style={{width: '90%'}} />
+                <span>A One Time Passcode has been sent to the mobile</span>
                 <span>number ending in 7049</span>
                 <span>Enter it below within 2 minutes</span>
                 <div className="form w-100  row justify-content-center, align-items-center, mt-3">

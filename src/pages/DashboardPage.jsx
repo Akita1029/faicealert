@@ -3,12 +3,13 @@ import React from "react";
 // import RatingPage from "../components/RatingPage";
 
 import { useNavigate } from "react-router-dom";
+import GoogleMapReact from 'google-map-react';
 
 import theme from "../lib/theme";
 
 import './Pages.css';
 
-const NavItem = (props) => {
+const NavItem = ({iconName, label, badge, ...rest}) => {
     return (
         <li className="nav-item mb-3" style={{
             display: 'flex',
@@ -16,13 +17,13 @@ const NavItem = (props) => {
             justifyContent: 'flex-start',
             alignItems: 'center',
             cursor: 'pointer'
-        }}>
-            <i className={props.iconName} style={{fontSize: '1.2rem'}}/>
-            <span className="ms-3 flex-grow-1" style={{fontSize: '1.2rem'}}>{props.label}</span>
-            {props.badge ? (
+        }} {...rest}>
+            <i className={iconName} style={{fontSize: '1.2rem'}}/>
+            <span className="ms-3 flex-grow-1" style={{fontSize: '1.2rem'}}>{label}</span>
+            {badge ? (
                 <span className="badge rounded-pill" style={{
                     background: 'linear-gradient(180deg, #6989FE 0%, #3C64F4 100%)'
-                }}>{props.badge}</span>
+                }}>{badge}</span>
             ) : (
                 <i className="bi bi-list" style={{fontSize: '1.4rem', color: '#aaa'}}/>
             )}
@@ -30,18 +31,29 @@ const NavItem = (props) => {
     );
 };
 
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 export default function DashboardPage(props) {
     
     const navigate = useNavigate();
     
     const handleRoute = (data) => {
-        navigate('/'+data, {
-            replace: true
-        });
+        navigate(`/${data}`);
     };
 
     const [tabIndex, setTabIndex] = React.useState(1);
+
+    const defaultProps = {
+        center: {
+          lat: 10.99835602,
+          lng: 77.01502627
+        },
+        zoom: 11
+      };
+
+      const handleApiLoaded = (map, maps) => {
+        // use map and maps objects
+      };
 
    
     return (
@@ -123,12 +135,12 @@ export default function DashboardPage(props) {
                             <hr className="mt-2" style={{borderColor: '#aaa', borderWidth: 2}} />
                             <div className="px-3">
                                 <ul className="nav flex-column">
-                                    <NavItem label="Dashboard" iconName="bi bi-house" />
-                                    <NavItem label="Stores" iconName="bi bi-cart" badge={5} />
+                                    <NavItem label="Dashboard" iconName="bi bi-house" onClick={()=>handleRoute('dashboard')}/>
+                                    <NavItem label="Stores" iconName="bi bi-cart" badge={5} onClick={()=>handleRoute('stores')}/>
                                     <NavItem label="Person of Interest" iconName="bi bi-person" badge={10} onClick={()=>handleRoute('poi')}/>
-                                    <NavItem label="My Reports" iconName="bi bi-file-text" />
-                                    <NavItem label="Manage Users" iconName="bi bi-exclamation-triangle" />
-                                    <NavItem label="Configuration" iconName="bi bi-gear" />
+                                    <NavItem label="My Reports" iconName="bi bi-file-text" onClick={()=>handleRoute('reports')}/>
+                                    <NavItem label="Manage Users" iconName="bi bi-exclamation-triangle" onClick={()=>handleRoute('users')}/>
+                                    <NavItem label="Configuration" iconName="bi bi-gear" onClick={()=>handleRoute('settings')}/>
                                     <li className="nav-item mb-3" style={{
                                         display: 'flex',
                                         flexDirection: 'row',
@@ -230,10 +242,20 @@ export default function DashboardPage(props) {
                                         </ul>
                                     </div>
                                     <div className="col-9">
-                                        <img src="/landscape_map.jpg" style={{
-                                            width:'100%',
-                                            height:'380px',
-                                        }}/>
+                                        <div style={{ height: '60vh', width: '100%' }}>
+                                            <GoogleMapReact
+                                                defaultCenter={defaultProps.center}
+                                                defaultZoom={defaultProps.zoom}
+                                                yesIWantToUseGoogleMapApiInternals
+                                                onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+                                                >
+                                                <AnyReactComponent
+                                                    lat={59.955413}
+                                                    lng={30.337844}
+                                                    text="My Marker"
+                                                />
+                                            </GoogleMapReact>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="row mt-3">
@@ -426,11 +448,14 @@ export default function DashboardPage(props) {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-3">
-                            <img src="/portriot_map.jpg" style={{
-                                width:'100%',
-                                height:'1000px',
-                            }}/>
+                        <div className="col-3 pe-0">
+                            <div style={{ height: '100vh', width: '100%' }}>
+                                <GoogleMapReact
+                                    defaultCenter={defaultProps.center}
+                                    defaultZoom={defaultProps.zoom}
+                                    >
+                                </GoogleMapReact>
+                            </div>
                         </div>
                         <div className="col-9 p-4" style={{backgroundColor:theme.backgroundGray}}>
                             <div className="border rounded" style={{
